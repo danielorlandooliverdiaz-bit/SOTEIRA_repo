@@ -1,6 +1,10 @@
+/* Importamos fuentes de Google Fonts (Solución al problema de fuentes no encontradas) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@300;400;700&display=swap');
+
 /* ====== ESTILOS GENERALES ====== */
 body {
-    background: linear-gradient(to right, #86653055, #BD9E59);
+    font-family: 'Roboto', sans-serif; /* Fuente de lectura */
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -10,100 +14,80 @@ main {
     flex: 1;
 }
 
-
+/* Header más limpio */
 header {
-    width: 100%;
-      background: linear-gradient(to right, #191928, #0D2640);
-    padding: 25px 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d); /* Un toque moderno */
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.card-body {
-    background: linear-gradient(to right, #191928, #0D2640);
-    color: white;
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif; /* Fuente para títulos */
+    font-weight: 800;
 }
 
-
-.footer-banner {
-    background-image: url('../img/logo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 200px;
-}
-
-.social-icon img {
-    width: 30px;
-    height: auto;
-    margin-right: 10px;
-}
-
-@font-face {
-    font-family: 'Titulos1';
-    src: url('../fonts/akira_expanded/Akira Expanded Demo.otf');
-}
-
-.font-titulo1 {
-    font-family: 'Titulos1';
-
-}
-
-@font-face {
-    font-family: 'Indice';
-    src: url('../fonts/rebucked/rebucked.ttf');
+/* Clases específicas para sustituir a las fuentes antiguas */
+.font-bonello, .font-titulo1, .font-estilo2 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .font-indice {
-    font-family: 'Indice';
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
-
-
-@font-face {
-    font-family: 'Bonello';
-    src: url('../fonts/bonello/Bonello-Regular.otf');
-}
-
-.font-bonello {
-    font-family: 'Bonello';
-}
-
-@font-face {
-    font-family: 'estilo2';
-    src: url('../fonts/FortalesiaPlain_PERSONAL_USE_ONLY.otf');
-}
-
-.font-estilo2 {
-    font-family: 'estilo2';
-}
-
-
-footer {
-    background: linear-gradient(to right, #191928, #0D2640);
-}
-
-.card-shadow-hover {
-    transition: transform 0.2s, box-shadow 0.2s;
+/* Mejoras en las tarjetas para que Bootstrap luzca mejor */
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-shadow-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
 }
 
-.card .card-img-top {
-  height: 200px; /* Puedes ajustar este valor si quieres que sean más altas o más bajas */
-  object-fit: cover; /* Esto evita que la imagen se deforme */
-  width: 100%;
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
 }
 
+.card-body {
+    background-color: white;
+    color: #333; /* Texto oscuro para mejor lectura */
+}
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+}
+
+.social-icon img {
+    width: 24px;
+    height: auto;
+    margin-right: 15px;
+    transition: opacity 0.2s;
+}
+
+.social-icon:hover img {
+    opacity: 0.7;
+}
 
 #project-search {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#project-search:focus {
+    border-color: #0d6efd;
 }

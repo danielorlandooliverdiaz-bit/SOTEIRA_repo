@@ -1,5 +1,5 @@
 <?php
-require 'utils/db.php';
+require 'includes/db.php';
 
 $nombre = "Administrador";
 $email = "admin@admin.com";
