@@ -1,16 +1,13 @@
 <?php
 session_start();
-
-// CORRECCIÓN 1: Si moviste db.php a la carpeta 'includes' como acordamos:
 require_once 'includes/db.php'; 
-// Si decidiste dejarlo en 'utils', cambia la línea anterior por 'utils/db.php'
 
 // Detectamos la IP para los enlaces dinámicos
 $host_ip = $_SERVER['SERVER_NAME'];
 
 // --- SEGURIDAD ---
 if (!isset($_SESSION['user_id'])) {
-    // CORRECCIÓN 2: Redirigimos a index.php (el nuevo login), no a index.html
+    
     header("Location: index.php");
     exit;
 }

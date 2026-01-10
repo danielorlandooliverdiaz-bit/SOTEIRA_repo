@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once 'includes/db.php'; // Asegúrate de mover db.php a la carpeta includes
-
+require_once 'includes/db.php'; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
