@@ -2,6 +2,9 @@
 session_start();
 require_once 'utils/db.php';
 
+// Detectamos la IP que está usando el navegador (ej: 10.2.84.206 o localhost)
+$host_ip = $_SERVER['SERVER_NAME'];
+
 if (
     !isset($_SESSION['user_rol']) ||
     $_SESSION['user_rol'] !== 'admin'
@@ -117,33 +120,33 @@ if (isset($conn) && $conn instanceof mysqli) {
 
                     <div class="list-group">
 
-                        <div class="service-list-item d-flex justify-content-between align-items-center p-3">
-                            <span class="text-white fw-bold">Almacenamiento en la nube</span>
-                            <a href="http://cloud.soteira.local" target="_blank" class="btn btn-secondary px-4">
-                                Nextcloud
-                            </a>
-                        </div>
+                       <div class="service-list-item d-flex justify-content-between align-items-center p-3">
+                        <span class="text-white fw-bold">Almacenamiento en la nube</span>
+                        <a href="http://<?= $host_ip ?>:8083" target="_blank" class="btn btn-secondary px-4">
+                            Nextcloud
+                        </a>
+                    </div>
 
-                        <div class="service-list-item d-flex justify-content-between align-items-center p-3">
-                            <span class="text-white fw-bold">Sistema de incidencias</span>
-                            <a href="http://peppermint.soteira.local" target="_blank" class="btn btn-primary px-4">
-                                Peppermint
-                            </a>
-                        </div>
+                    <div class="service-list-item d-flex justify-content-between align-items-center p-3">
+                        <span class="text-white fw-bold">Sistema de incidencias</span>
+                        <a href="http://<?= $host_ip ?>:8085" target="_blank" class="btn btn-primary px-4">
+                            Peppermint
+                        </a>
+                    </div>
 
-                        <div class="service-list-item d-flex justify-content-between align-items-center p-3">
-                            <span class="text-white fw-bold">Plataforma de mensajería</span>
-                            <a href="http://chat.soteira.local" target="_blank" class="btn btn-danger px-4">
-                                Rocket.Chat
-                            </a>
-                        </div>
+                    <div class="service-list-item d-flex justify-content-between align-items-center p-3">
+                        <span class="text-white fw-bold">Plataforma de mensajería</span>
+                        <a href="http://<?= $host_ip ?>:8084" target="_blank" class="btn btn-danger px-4">
+                            LetsChat
+                        </a>
+                    </div>
 
-                        <div class="service-list-item d-flex justify-content-between align-items-center p-3">
-                            <span class="text-white fw-bold">Plataforma educativa</span>
-                            <a href="http://moodle.soteira.local" target="_blank" class="btn btn-secondary px-4">
-                                Moodle
-                            </a>
-                        </div>
+                    <div class="service-list-item d-flex justify-content-between align-items-center p-3">
+                        <span class="text-white fw-bold">Plataforma educativa</span>
+                        <a href="http://<?= $host_ip ?>:8082" target="_blank" class="btn btn-secondary px-4">
+                            Moodle
+                        </a>
+                    </div>
 
                     </div>
                 </div>

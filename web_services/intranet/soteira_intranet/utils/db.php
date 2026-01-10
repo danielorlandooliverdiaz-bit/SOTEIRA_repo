@@ -17,6 +17,7 @@ if (!$conn->query($sql_create_db)) {
 
 $conn->select_db($db);
 
+// ESTA ES LA CLAVE: Ahora la tabla se crea con la columna 'rol'
 $sql_create_table = "CREATE TABLE IF NOT EXISTS users (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
