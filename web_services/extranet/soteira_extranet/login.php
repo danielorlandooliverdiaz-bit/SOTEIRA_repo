@@ -1,40 +1,34 @@
 <?php
-header('Content-Type: application/json');
-require 'db.php';
+session_start();
+require_once 'db.php';
 
-$email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-if (empty($email) || empty($password)) {
-    echo json_encode(["status" => "error", "message" => "Faltan datos"]);
+    // Buscamos usuario
+    $stmt = $conn->prepare("SELECT id, nombre, email, password, rol FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($user = $result->fetch_assoc()) {
+        // Verificamos contraseña (Hash o Texto plano para compatibilidad)
+        if (password_verify($password, $user['password']) || $password === $user['password']) {
+            // Guardamos sesión
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_nombre'] = $user['nombre'];
+            $_SESSION['user_rol'] = $user['rol'];
+
+            // TRUCO: Redirigimos al puerto 8080 (Intranet) dinámicamente
+            $host = $_SERVER['SERVER_NAME']; 
+            header("Location: http://$host:8080/dashboard.php");
+            exit;
+        }
+    } 
+    
+    // Si falla
+    header("Location: index.php?error=Usuario o contraseña incorrectos");
     exit;
 }
-
-$stmt = $conn->prepare("SELECT id, nombre, password FROM users WHERE email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($user = $result->fetch_assoc()) {
-    
-    if (password_verify($password, $user['password'])) {
-        
-        echo json_encode([
-            "status" => "success", 
-            "message" => "Bienvenido " . $user['nombre'],
-            "user" => [
-                "id" => $user['id'],
-                "nombre" => $user['nombre'],
-                "email" => $email
-            ]
-        ]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Contraseña incorrecta"]);
-    }
-} else {
-    echo json_encode(["status" => "error", "message" => "Usuario no encontrado"]);
-}
-
-$stmt->close();
-$conn->close();
 ?>

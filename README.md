@@ -19,8 +19,8 @@ La primera vez que arranques, **Moodle tarda bastante (unos 3-4 minutos)** en es
 * Espera hasta ver: *"Welcome to the Bitnami Moodle container"*.
 
 * Se necesita crear un usuario administrador en la base de datos. de una manera muy sencilla.
-* entra en el enlace `http://10.2.84.206:8080/crear_admin.php` (la IP, puede variar).
-* El script crear_admin.php se ha mantenido intencionadamente para facilitar la corrección de la práctica.
+* entra en el enlace `http://10.2.84.206:8080/_crear_admin.php` (la IP, puede variar).
+* El fichero _crear_admin.php se ha mantenido intencionadamente para facilitar la corrección de la práctica.
 
 ## 🔗 Accesos Directos
 
@@ -33,7 +33,7 @@ La IP del servidor está configurada en el archivo `.env` (`10.2.84.206`).
 | **Nextcloud** | `http://10.2.84.206:8083` | *(Crear admin al entrar)* |
 | **LetsChat** | `http://10.2.84.206:8084` | *(Requiere registro)* |
 | **Peppermint** | `http://10.2.84.206:8085` | `admin@peppermint.com` / `admin` |
-| **Intranet** | `http://10.2.84.206:8080/crear_admin.php` | `admin@admin.com` /  `admin` |
+| **Intranet** | `http://10.2.84.206:8080_/_crear_admin.php` | `admin@admin.com` /  `admin` |
 
 ---
 

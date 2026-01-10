@@ -1,93 +1,55 @@
-/* Importamos fuentes de Google Fonts (Solución al problema de fuentes no encontradas) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@300;400&display=swap');
 
-/* ====== ESTILOS GENERALES ====== */
+:root {
+    --primary-blue: #1e3c72;
+    --secondary-blue: #2a5298;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
 body {
-    font-family: 'Roboto', sans-serif; /* Fuente de lectura */
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-/* Header más limpio */
-header {
-    background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d); /* Un toque moderno */
-    padding: 20px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-h1, h2, h3, h4, h5 {
-    font-family: 'Montserrat', sans-serif; /* Fuente para títulos */
-    font-weight: 800;
-}
-
-/* Clases específicas para sustituir a las fuentes antiguas */
-.font-bonello, .font-titulo1, .font-estilo2 {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.font-indice {
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     text-transform: uppercase;
-    font-size: 0.9rem;
 }
 
-/* Mejoras en las tarjetas para que Bootstrap luzca mejor */
-.card {
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Efecto Glassmorphism (Igual que en la Intranet) */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+    transition: transform 0.3s;
 }
 
-.card-shadow-hover:hover {
+.glass-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
 }
 
-.card-img-top {
-    height: 220px;
-    object-fit: cover;
+.navbar {
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--glass-border);
 }
 
-.card-body {
-    background-color: white;
-    color: #333; /* Texto oscuro para mejor lectura */
+.btn-primary {
+    background: #ffc107; /* Amarillo warning para destacar igual que en intranet */
+    border: none;
+    color: #000;
+    font-weight: bold;
 }
 
-/* Footer */
-footer {
-    background: #1a1a1a;
-}
-
-.social-icon img {
-    width: 24px;
-    height: auto;
-    margin-right: 15px;
-    transition: opacity 0.2s;
-}
-
-.social-icon:hover img {
-    opacity: 0.7;
-}
-
-#project-search {
-    width: 100%;
-    padding: 12px 20px;
-    border: 2px solid #ddd;
-    border-radius: 30px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-#project-search:focus {
-    border-color: #0d6efd;
+.btn-primary:hover {
+    background: #e0a800;
+    color: #000;
 }
