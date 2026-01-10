@@ -1,0 +1,11 @@
+*.zip
+*.docx
+*.png_backup
+Captura de pantalla*
+.git
+.env
+docker-compose.yml
+soteira.zip
+soteira_final.zip
+**/data
+**/node_modules

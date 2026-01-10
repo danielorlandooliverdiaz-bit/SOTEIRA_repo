@@ -1,0 +1,25 @@
+{
+    "proyectos": [
+        {
+            "id": 1,
+            "titulo": "SOTEIRA IA",
+            "descripcion": "Inteligencia artificial para el mercado hispanohablante",
+            "imagen": "assets/img/ORIGEN.png",
+            "fecha": "2025-01-15"
+        },
+        {
+            "id": 2,
+            "titulo": "SOTEIRA Avatares",
+            "descripcion": "Personaliza tu experiencia con nuestros avatares.",
+            "imagen": "assets/img/AVATAR.png",
+            "fecha": "2025-02-20"
+        },
+        {
+            "id": 3,
+            "titulo": "SOTEIRA Planes",
+            "descripcion": "Descubre nuestros planes y precios.",
+            "imagen": "assets/img/PLANES.png",
+            "fecha": "2025-03-10"
+        }
+    ]
+}

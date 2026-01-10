@@ -1,0 +1,185 @@
+version: '3.8'
+
+services:
+  # ============================================================
+  #  1. WEB SERVICES (Intranet & Extranet Corporativa)
+  # ============================================================
+  
+  # Base de datos compartida para los portales web
+  soteira_db:
+    image: mariadb:10.6
+    container_name: soteira_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: soteira_db
+      MYSQL_USER: soteira
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+    volumes:
+      - ./education_services/data/soteira_db:/var/lib/mysql
+    networks:
+      - soteira_net
+
+  # Portal del empleado
+  intranet:
+    build: ./web_services/intranet/soteira_intranet
+    container_name: soteira_intranet
+    depends_on:
+      - soteira_db
+    ports:
+      - "0.0.0.0:8080:80"
+    networks:
+      - soteira_net
+
+  # Portal público
+  extranet:
+    build: ./web_services/extranet/soteira_extranet
+    container_name: soteira_extranet
+    depends_on:
+      - soteira_db
+    ports:
+      - "0.0.0.0:8081:80"
+    networks:
+      - soteira_net
+
+  # ============================================================
+  #  2. EDUCATION SERVICES (Plataforma LMS Moodle)
+  # ============================================================
+  
+  # Aplicación Moodle
+  moodle:
+    # Usamos la imagen 'Legacy' para garantizar estabilidad en la versión 5.0
+    image: bitnamilegacy/moodle:5.0.2-debian-12-r2
+    container_name: soteira_moodle
+    ports:
+      # Puerto 8082 externo mapeado al 8080 interno de Bitnami
+      - "0.0.0.0:8082:8080"
+    environment:
+      - BITNAMI_DEBUG=true
+      - MOODLE_DATABASE_HOST=moodle_db
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=bn_moodle
+      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD}
+      # URL dinámica basada en la IP definida en el .env
+      - MOODLE_URL=http://${SERVER_IP}:8082
+      - MOODLE_SKIP_BOOTSTRAP=no
+    volumes:
+      # Persistencia de datos de la aplicación y archivos de usuario
+      - ./education_services/data/moodle:/bitnami/moodle
+      - ./education_services/data/moodledata:/bitnami/moodledata
+    depends_on:
+      - moodle_db
+    networks:
+      - soteira_net
+
+  # Base de datos dedicada para Moodle
+  moodle_db:
+    # MariaDB 10.11 es la versión LTS recomendada para Moodle 5
+    image: mariadb:10.11
+    container_name: moodle_db
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_USER: bn_moodle
+      MARIADB_PASSWORD: ${MOODLE_DB_PASSWORD}
+      MARIADB_DATABASE: bitnami_moodle
+    volumes:
+      - ./education_services/data/moodle_db:/var/lib/mysql
+    networks:
+      - soteira_net
+
+  # ============================================================
+  #  3. COLAB SERVICES (Nube y Chat)
+  # ============================================================
+  
+  # Nextcloud: Almacenamiento de archivos
+  nextcloud:
+    image: nextcloud:latest
+    container_name: soteira_nextcloud
+    depends_on:
+      - nextcloud_db
+    ports:
+      - "0.0.0.0:8083:80"
+    volumes:
+      - ./colab_services/data/nextcloud:/var/www/html
+    networks:
+      - soteira_net
+
+  # Base de datos para Nextcloud
+  nextcloud_db:
+    image: mariadb:10.6
+    container_name: nextcloud_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NEXTCLOUD_DB_PASSWORD}
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: ${NEXTCLOUD_DB_PASSWORD}
+    volumes:
+      - ./colab_services/data/nextcloud_db:/var/lib/mysql
+    networks:
+      - soteira_net
+
+  # LetsChat: Mensajería instantánea (Ligero y funcional)
+  letschat:
+    image: sdelements/lets-chat:latest
+    container_name: soteira_letschat
+    depends_on:
+      - mongo
+    environment:
+      LCB_DATABASE_URI: mongodb://mongo:27017/letschat
+      LCB_HTTP_PORT: 5000
+    ports:
+      # Mapeamos el puerto 8084 externo al 5000 interno
+      - "0.0.0.0:8084:5000"
+    networks:
+      - soteira_net
+
+  # Base de datos NoSQL para el chat
+  mongo:
+    image: mongo:4.0
+    container_name: soteira_mongo
+    restart: always
+    volumes:
+      - ./colab_services/data/letschat_mongo:/data/db
+    networks:
+      - soteira_net
+
+  # ============================================================
+  #  4. SUPPORT SERVICES (Gestión de Tickets)
+  # ============================================================
+  
+  # Peppermint: Sistema de Tickets
+  peppermint:
+    image: pepperlabs/peppermint:latest
+    container_name: soteira_peppermint
+    ports:
+      - "0.0.0.0:8085:3000"
+    depends_on:
+      - peppermint_db
+    environment:
+      PORT: 3000
+      SECRET: ${PEPPERMINT_SECRET}
+      DB_HOST: peppermint_db
+      DB_USERNAME: peppermint
+      DB_PASSWORD: ${PEPPERMINT_DB_PASSWORD}
+    networks:
+      - soteira_net
+
+  # Base de datos PostgreSQL para Peppermint
+  peppermint_db:
+    image: postgres:13
+    container_name: soteira_peppermint_db
+    restart: always
+    environment:
+      POSTGRES_DB: peppermint
+      POSTGRES_USER: peppermint
+      POSTGRES_PASSWORD: ${PEPPERMINT_DB_PASSWORD}
+    volumes:
+      - ./support_services/data/peppermint_db:/var/lib/postgresql/data
+    networks:
+      - soteira_net
+
+# Red interna compartida para todos los servicios
+networks:
+  soteira_net:
+    driver: bridge

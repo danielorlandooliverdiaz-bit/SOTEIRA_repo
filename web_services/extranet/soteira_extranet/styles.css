@@ -1,0 +1,109 @@
+/* ====== ESTILOS GENERALES ====== */
+body {
+    background: linear-gradient(to right, #86653055, #BD9E59);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+
+header {
+    width: 100%;
+      background: linear-gradient(to right, #191928, #0D2640);
+    padding: 25px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-body {
+    background: linear-gradient(to right, #191928, #0D2640);
+    color: white;
+}
+
+
+.footer-banner {
+    background-image: url('../img/');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+
+@font-face {
+    font-family: 'Titulos1';
+    src: url('../styles/akira_expanded/Akira Expanded Demo.otf');
+}
+
+.font-titulo1 {
+    font-family: 'Titulos1';
+
+}
+
+@font-face {
+    font-family: 'Indice';
+    src: url('../styles/rebucked/rebucked.ttf');
+}
+
+.font-indice {
+    font-family: 'Indice';
+}
+
+
+
+@font-face {
+    font-family: 'Bonello';
+    src: url('../styles/bonello/Bonello-Regular.otf');
+}
+
+.font-bonello {
+    font-family: 'Bonello';
+}
+
+@font-face {
+    font-family: 'estilo2';
+    src: url('../styles/FortalesiaPlain_PERSONAL_USE_ONLY.otf');
+}
+
+.font-estilo2 {
+    font-family: 'estilo2';
+}
+
+
+footer {
+    background: linear-gradient(to right, #191928, #0D2640);
+}
+
+.card-shadow-hover {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-shadow-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.card .card-img-top {
+  height: 200px; /* Puedes ajustar este valor si quieres que sean más altas o más bajas */
+  object-fit: cover; /* Esto evita que la imagen se deforme */
+  width: 100%;
+}
+
+
+#project-search {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
