@@ -1,12 +1,8 @@
-```markdown
 # 🛡️ Proyecto SOTEIRA 
 
 Este es el repositorio oficial para la práctica de despliegue de servicios de la organización **Soteira**.
 
 En este proyecto hemos montado una arquitectura de microservicios usando **Docker Compose** para simular el entorno real de una empresa educativa. El objetivo principal era conseguir que todos los servicios (Moodle, Chat, Nube, Soporte) funcionen a la vez sin conflictos de puertos y con persistencia de datos.
-
----
-
 ---
 
 ## 🚀 Cómo arrancar el proyecto
