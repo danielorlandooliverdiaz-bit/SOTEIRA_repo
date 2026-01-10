@@ -18,6 +18,9 @@ La primera vez que arranques, **Moodle tarda bastante (unos 3-4 minutos)** en es
 * Puedes ver si ya terminó con: `docker logs -f soteira_moodle`
 * Espera hasta ver: *"Welcome to the Bitnami Moodle container"*.
 
+Se necesita crear un usuario administrador en la base de datos. de una manera muy sencilla.
+entra en el enlace (la IP, puede variar, en este caso es esa): 
+| **Intranet** | `http://10.2.84.206:8080/crear_admin.php` | `admin@admin.com` /  `admin` |
 ---
 
 ## 🔗 Accesos Directos
