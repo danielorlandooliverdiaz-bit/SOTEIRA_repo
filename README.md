@@ -20,6 +20,7 @@ La primera vez que arranques, **Moodle tarda bastante (unos 3-4 minutos)** en es
 
 * Se necesita crear un usuario administrador en la base de datos. de una manera muy sencilla.
 * entra en el enlace `http://10.2.84.206:8080/crear_admin.php` (la IP, puede variar).
+* El script crear_admin.php se ha mantenido intencionadamente para facilitar la corrección de la práctica.
 
 ## 🔗 Accesos Directos
 
