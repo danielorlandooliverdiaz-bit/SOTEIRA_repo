@@ -1,32 +1,17 @@
-<?php
-session_start();
-require_once 'includes/db.php';
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Soteira - Asistente Virtual</title>
 </head>
 <body>
 
-
-<!-- =========================
-     NAVBAR
-     Barra de navegación principal (visible en la parte superior)
-========================= -->
-
-
-
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#tpl-inicio">
+        <a class="navbar-brand d-flex align-items-center" href="#inicio">
             <img src="assets/img/logo.png" alt="SOTEIRA" height="35" class="me-2">
             <span class="fw-bold">SOTEIRA</span>
         </a>
@@ -35,54 +20,39 @@ require_once 'includes/db.php';
         </button>
         <div class="collapse navbar-collapse" id="navSoteira">
             <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link spa-link" href="#tpl-inicio">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link spa-link" href="#tpl-empresa">La Empresa</a></li>
-                <li class="nav-item"><a class="nav-link spa-link" href="#tpl-servicios">Servicios</a></li>
-                <li class="nav-item"><a class="nav-link spa-link" href="#tpl-equipo">El Equipo</a></li>
-                <li class="nav-item"><a class="nav-link spa-link" href="#tpl-contacto">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link spa-link" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link spa-link" href="#empresa">La Empresa</a></li>
+                <li class="nav-item"><a class="nav-link spa-link" href="#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link spa-link" href="#equipo">El Equipo</a></li>
+                <li class="nav-item"><a class="nav-link spa-link" href="#contacto">Contacto</a></li>
                 <li class="nav-item ms-lg-3">
-                    <a class="btn btn-warning fw-bold px-4 shadow-sm spa-link" href="#tpl-login">ACCESO</a>
+                    <a class="btn btn-warning fw-bold px-4 shadow-sm spa-link" href="#login">ACCESO</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-
-<!-- =========================
-     MAIN CONTAINER
-     Área principal donde se renderiza el contenido visible dinámicamente
-========================= -->
-
-
 <main id="main-container" class="container mt-5 py-5"></main>
-<!-- =========================
-     TEMPLATES (sección oculta)
-     Contiene plantillas HTML reutilizables que el frontend inserta en el DOM.
-     Cada sección aquí representa un componente visual.
-========================= -->
 
-<div id="templates">
+<div id="templates" class="d-none">
     
-    <!-- TEMPLATE: INICIO -->
-    <section id="tpl-inicio" class="page" >
+    <section id="tpl-inicio">
         <div class="glass-card text-center py-5">
             <h1 class="display-3 fw-bold">Tu Guía Digital</h1>
             <p class="lead">Asistentes virtuales animados para una independencia tecnológica real.</p>
-            <a href="#tpl-contacto" class="btn btn-primary spa-link">Contáctanos</a>
+            <a href="#contacto" class="btn btn-primary spa-link">Contáctanos</a>
         </div>
     </section>
 
-    <!-- TEMPLATE: EMPRESA / MISIÓN -->
-    <section id="tpl-empresa" class="page">
+    <section id="tpl-empresa">
         <div class="glass-card">
             <h2>Nuestra Misión</h2>
             <p>Soteira nace para ayudar a personas mayores a navegar en el mundo digital con avatares amigables.</p>
         </div>
     </section>
 
-    <!-- TEMPLATE: SERVICIOS -->
-    <section id="tpl-servicios" class="page">
+    <section id="tpl-servicios">
         <h2 class="text-center mb-4">Servicios Soteira</h2>
         <div class="row g-4">
             <div class="col-md-4"><div class="glass-card text-center"><h3>Moodle</h3><p>Cursos guiados.</p></div></div>
@@ -91,20 +61,17 @@ require_once 'includes/db.php';
         </div>
     </section>
 
-    <!-- TEMPLATE: EQUIPO -->
-    <section id="tpl-equipo" class="page">
+    <section id="tpl-equipo">
         <div class="glass-card text-center">
             <h2>El Equipo</h2>
             <p>Daniel Oliver y Bobby Delhi: Innovación y Accesibilidad.</p>
         </div>
     </section>
 
-
-    <!-- TEMPLATE: CONTACTO (formulario de registro) -->
-    <section id="tpl-contacto" class="page">
+    <section id="tpl-contacto">
         <div class="glass-card">
             <h3>¿Tienes una idea? Cuéntanosla</h3>
-            <form action="contact-form.php" method="POST">
+            <form action="signup.php" method="POST">
                 <input type="text" name="nombre" class="form-control mb-3" placeholder="Nombre" required>
                 <input type="email" name="email" class="form-control mb-3" placeholder="Tu Email" required>
                 <textarea class="form-control mb-3" placeholder="Tu idea o sugerencia"></textarea>
@@ -113,31 +80,18 @@ require_once 'includes/db.php';
         </div>
     </section>
 
-
-    <!-- TEMPLATE: LOGIN (formulario de acceso) -->
-    <section id="tpl-login" class="page">
+    <section id="tpl-login">
         <div class="glass-card mx-auto" style="max-width: 400px;">
             <h2 class="text-center">Validación de Usuario</h2>
-           <form action="login.php" method="POST">
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Contraseña</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
-        </form>
+            <form action="login.php" method="POST">
+                <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+                <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
+                <button class="btn btn-primary w-100">Entrar</button>
+            </form>
         </div>
     </section>
 </div>
 
-
-<!-- =========================
-     FOOTER
-     Pie de página con información de contacto y enlaces legales
-========================= -->
 <footer class="footer-soteira mt-auto py-5">
     <div class="container">
         <div class="row g-4">
@@ -152,9 +106,9 @@ require_once 'includes/db.php';
             <div class="col-md-2">
                 <h6 class="text-uppercase fw-bold mb-3">Mapa Web</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#tpl-inicio" class="footer-link spa-link">Inicio</a></li>
-                    <li><a href="#tpl-empresa" class="footer-link spa-link">La Empresa</a></li>
-                    <li><a href="#tpl-servicios" class="footer-link spa-link">Servicios</a></li>
+                    <li><a href="#inicio" class="footer-link spa-link">Inicio</a></li>
+                    <li><a href="#empresa" class="footer-link spa-link">La Empresa</a></li>
+                    <li><a href="#servicios" class="footer-link spa-link">Servicios</a></li>
                 </ul>
             </div>
 
@@ -168,7 +122,7 @@ require_once 'includes/db.php';
             <div class="col-md-3">
                 <h6 class="text-uppercase fw-bold mb-3">Síguenos</h6>
                 <div class="d-flex">
-                    <a href="#" class="social-icon-box me-2"><img src="assets/img/TWITTER LOGO.png" alt="Twitter"></a>
+                    <a href="#" class="social-icon-box me-2"><img src="assets/img/TWITTER.png" alt="Twitter"></a>
                     <a href="#" class="social-icon-box me-2"><img src="assets/img/FACEBOOK.png" alt="Facebook"></a>
                     <a href="#" class="social-icon-box"><img src="assets/img/INSTAGRAM.png" alt="Instagram"></a>
                 </div>
@@ -188,12 +142,3 @@ require_once 'includes/db.php';
         </div>
     </div>
 </footer>
-
-<!-- Script  SPA con JQuery -->
-
-<script src="assets/js/jquery-3.7.1.min.js"></script>
-<script src="assets/js/main.js" ></script>
-
-
-</body>
-</html>

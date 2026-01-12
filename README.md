@@ -1,9 +1,9 @@
-# 🛡️ Proyecto SOTEIRA 
+#  Proyecto SOTEIRA 
 
 Este es el repositorio oficial para la práctica de despliegue de servicios de la organización **Soteira**.
 ---
 
-## 🚀 Cómo arrancar el proyecto
+##  Cómo arrancar el proyecto
 
 Hemos configurado todo para que arranque con un solo comando. Desde la raíz:
 
@@ -12,7 +12,7 @@ docker compose up -d
 
 ```
 
-**⚠️ AVISO IMPORTANTE:**
+**AVISO IMPORTANTE:**
 La primera vez que arranques, **Moodle tarda bastante (unos 3-4 minutos)** en estar listo porque tiene que instalar toda la base de datos desde cero.
 
 * Puedes ver si ya terminó con: `docker logs -f soteira_moodle`
@@ -22,7 +22,7 @@ La primera vez que arranques, **Moodle tarda bastante (unos 3-4 minutos)** en es
 * entra en el enlace `http://10.2.84.206:8080/_crear_admin.php` (la IP, puede variar).
 * El fichero _crear_admin.php se ha mantenido intencionadamente para facilitar la corrección de la práctica.
 
-## 🔗 Accesos Directos
+## Accesos Directos
 
 La IP del servidor está configurada en el archivo `.env` (`10.2.84.206`).
 
@@ -60,7 +60,7 @@ Tuvimos problemas con el puerto 80 y el 3000 porque varios servicios querían us
 
 ---
 
-## 📝 Cosas por mejorar (To-Do)
+## Cosas por mejorar (To-Do)
 
 Si tuviéramos más tiempo, nos gustaría añadir:
 
@@ -70,7 +70,7 @@ Si tuviéramos más tiempo, nos gustaría añadir:
 
 ---
 
-## 📂 Estructura de carpetas
+## Estructura de carpetas
 
 Hemos separado los servicios por carpetas para no tener todo mezclado en la raíz:
 
