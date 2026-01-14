@@ -1,0 +1,16 @@
+URLs de acceso (local):
+
+Intranet: http://10.2.84.206:8080
+
+Extranet: http://10.2.84.206:8081
+
+Moodle: http://10.2.84.206:8082
+
+Nextcloud: http://10.2.84.206:8083
+
+LetsChat: http://10.2.84.206:8084
+
+Peppermint: http://10.2.84.206:8085
+
+
+La IP varia dependiendo de como lo configuren el fichero .env 

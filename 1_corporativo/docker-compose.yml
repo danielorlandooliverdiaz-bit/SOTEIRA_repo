@@ -1,0 +1,45 @@
+services:
+  # ============================================================
+  #  1. WEB SERVICES (Intranet & Extranet Corporativa)
+  # ============================================================
+  # Base de datos compartida para los portales web
+  soteira_db:
+    image: mariadb:10.6
+    container_name: soteira_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: soteira_db
+      MYSQL_USER: soteira
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+    volumes:
+      - ./data/soteira_db:/var/lib/mysql
+    networks:
+      - soteira_net
+
+  # Portal del empleado
+  intranet:
+    build: ./intranet/soteira_intranet
+    container_name: soteira_intranet
+    depends_on:
+      - soteira_db
+    ports:
+      - "0.0.0.0:8080:80"
+    networks:
+      - soteira_net
+
+  # Portal público
+  extranet:
+    build: ./extranet/soteira_extranet
+    container_name: soteira_extranet
+    depends_on:
+      - soteira_db
+    ports:
+      - "0.0.0.0:80:80"
+    networks:
+      - soteira_net
+
+# Red global  
+networks:
+  soteira_net:
+    driver: bridge

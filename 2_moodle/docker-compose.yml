@@ -1,0 +1,45 @@
+services:
+  #  ============================================================
+  #  2. EDUCATION SERVICES (Plataforma LMS Moodle)
+  # ============================================================
+  # Aplicación Moodle
+  moodle:
+    # Usamos la imagen 'Legacy' para garantizar estabilidad en la versión 5.0
+    image: bitnamilegacy/moodle:5.0.2-debian-12-r2
+    container_name: soteira_moodle
+    ports:
+      # Puerto 8082 externo mapeado al 8080 interno de Bitnami
+      - "0.0.0.0:8082:8080"
+    environment:
+      - BITNAMI_DEBUG=true
+      - MOODLE_DATABASE_HOST=moodle_db
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=bn_moodle
+      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD}
+      # URL dinámica basada en la IP definida en el .env
+      - MOODLE_URL=http://${SERVER_IP}:8082
+      - MOODLE_SKIP_BOOTSTRAP=no
+    volumes:
+      # Persistencia de datos de la aplicación y archivos de usuario
+      - ./education_services/data/moodle:/bitnami/moodle
+      - ./education_services/data/moodledata:/bitnami/moodledata
+    depends_on:
+      - moodle_db
+    networks:
+      - soteira_net
+
+  # Base de datos dedicada para Moodle
+  moodle_db:
+    # MariaDB 10.11 es la versión LTS recomendada para Moodle 5
+    image: mariadb:10.11
+    container_name: moodle_db
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_USER: bn_moodle
+      MARIADB_PASSWORD: ${MOODLE_DB_PASSWORD}
+      MARIADB_DATABASE: bitnami_moodle
+    volumes:
+      - ./education_services/data/moodle_db:/var/lib/mysql
+    networks:
+      - soteira_net

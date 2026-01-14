@@ -1,0 +1,36 @@
+$(document).ready(function() {
+
+    // Function to handle routing
+    function router() {
+        // 1. Get the hash (e.g., #about) or default to #home
+        var hash = window.location.hash || '#tpl-inicio';
+
+        // 2. Hide all pages
+        $('.page').hide();
+
+        // 3. Show the page that matches the hash
+        // We use the hash directly as the ID selector
+        if ($(hash).length) {
+            $(hash).fadeIn(300); // Simple fade effect
+        } else {
+            // If the hash doesn't exist (404), go home
+            $('#tpl-inicio').show();
+        }
+
+        // 4. Update the active class on the menu
+        $('nav a').removeClass('active');
+        $('nav a[href="' + hash + '"]').addClass('active');
+    }
+
+    // Listen for hash changes (when user clicks links or uses Back button)
+    $(window).on('hashchange', router);
+
+    // Load the correct page on initial page load
+    router();
+    
+    // Example: Interaction within a specific page
+    $('#alert-btn').click(function() {
+        alert("You clicked a button on the Contact page!");
+    });
+
+});
