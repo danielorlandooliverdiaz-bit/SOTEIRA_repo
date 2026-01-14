@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_rol'] = $user['rol'];
 
             // REDIRECCIÓN SERVIDOR (Infalible)
-            header("Location: logged.php");
+            header("Location: index.php?success=Login correcto");
             exit;
         }
     }

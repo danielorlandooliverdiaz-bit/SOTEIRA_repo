@@ -3,6 +3,10 @@ session_start();
 require_once 'includes/db.php';
 
 
+// Verificamos si el usuario ya está logueado
+$esta_logueado = isset($_SESSION['user_id']);
+$nombre_usuario = isset($_SESSION['user_nombre']) ? $_SESSION['user_nombre'] : 'Usuario';
+
 ?>
 
 <!DOCTYPE html>
@@ -40,8 +44,24 @@ require_once 'includes/db.php';
                 <li class="nav-item"><a class="nav-link spa-link" href="#tpl-servicios">Servicios</a></li>
                 <li class="nav-item"><a class="nav-link spa-link" href="#tpl-equipo">El Equipo</a></li>
                 <li class="nav-item"><a class="nav-link spa-link" href="#tpl-contacto">Contacto</a></li>
+
+                <!-- Si el usuario está logueado o no, muestra el nombre del usuario y un botón de logout/login -->
+
                 <li class="nav-item ms-lg-3">
-                    <a class="btn btn-warning fw-bold px-4 shadow-sm spa-link" href="#tpl-login">ACCESO</a>
+                    <?php if ($esta_logueado): ?>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="text-white me-2">
+                                Hola, <strong><?php echo htmlspecialchars($nombre_usuario); ?></strong>
+                            </span>
+                            <a class="btn btn-danger fw-bold px-3 shadow-sm" href="logout.php">
+                                LOGOUT
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <a class="btn btn-warning fw-bold px-4 shadow-sm spa-link" href="#tpl-login">
+                            ACCESO
+                        </a>
+                    <?php endif; ?>
                 </li>
             </ul>
         </div>
@@ -119,6 +139,31 @@ require_once 'includes/db.php';
         <div class="glass-card mx-auto" style="max-width: 400px;">
             <h2 class="text-center">Validación de Usuario</h2>
            <form action="login.php" method="POST">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            <a href="#tpl-register" class="spa-link">Registrarse</a>
+        </form>
+        </div>
+    </section>
+
+
+
+    <!-- TEMPLATE: Register (formulario de registro) -->
+    <section id="tpl-register" class="page">
+        <div class="glass-card mx-auto" style="max-width: 400px;">
+            <h2 class="text-center">Crear cuenta</h2>
+
+           <form action="register.php" method="POST">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" required>
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" required>
