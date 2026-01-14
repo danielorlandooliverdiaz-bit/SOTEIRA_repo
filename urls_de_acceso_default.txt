@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 URLs de acceso (local):
-=======
-URLs de acceso:
->>>>>>> 68fb543911988c14b6d867bf41ed950013cd6bef
 
 Intranet: http://10.2.84.206:8080
 
