@@ -1,0 +1,17 @@
+# Ignorar carpetas de datos (volúmenes de Docker)
+**/data/
+**/soteira_db/
+**/moodle_db/
+**/moodledata/
+**/nextcloud_db/
+**/letschat_mongo/
+**/peppermint_db/
+
+# Ignorar archivos comprimidos
+*.zip
+*.tar.gz
+
+# Ignorar configuraciones de sistema
+.DS_Store
+Thumbs.db
+EOF
