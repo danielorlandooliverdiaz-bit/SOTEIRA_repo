@@ -10,9 +10,9 @@ services:
     depends_on:
       - nextcloud_db
     ports:
-      - "0.0.0.0:8083:80"
+      - "80:80"
     volumes:
-      - ./colab_services/data/nextcloud:/var/www/html
+      - ./data/nextcloud:/var/www/html
     networks:
       - soteira_net
 
@@ -26,6 +26,11 @@ services:
       MYSQL_USER: nextcloud
       MYSQL_PASSWORD: ${NEXTCLOUD_DB_PASSWORD}
     volumes:
-      - ./colab_services/data/nextcloud_db:/var/lib/mysql
+      - ./data/nextcloud_db:/var/lib/mysql
     networks:
       - soteira_net
+
+  # Red interna compartida para todos los servicios
+networks:
+  soteira_net:
+    driver: bridge

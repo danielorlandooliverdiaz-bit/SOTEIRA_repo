@@ -24,7 +24,7 @@ services:
     depends_on:
       - soteira_db
     ports:
-      - "0.0.0.0:8080:80"
+      - "8080:80"
     networks:
       - soteira_net
 
@@ -35,7 +35,7 @@ services:
     depends_on:
       - soteira_db
     ports:
-      - "0.0.0.0:80:80"
+      - "80:80"
     networks:
       - soteira_net
 

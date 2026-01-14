@@ -8,8 +8,8 @@ services:
     image: bitnamilegacy/moodle:5.0.2-debian-12-r2
     container_name: soteira_moodle
     ports:
-      # Puerto 8082 externo mapeado al 8080 interno de Bitnami
-      - "0.0.0.0:8082:8080"
+      # Puerto 80 vm - 80 cnt
+      - "80:80"
     environment:
       - BITNAMI_DEBUG=true
       - MOODLE_DATABASE_HOST=moodle_db
@@ -18,12 +18,12 @@ services:
       - MOODLE_DATABASE_NAME=bitnami_moodle
       - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD}
       # URL dinámica basada en la IP definida en el .env
-      - MOODLE_URL=http://${SERVER_IP}:8082
+      - MOODLE_URL=http://${SERVER_IP}
       - MOODLE_SKIP_BOOTSTRAP=no
     volumes:
       # Persistencia de datos de la aplicación y archivos de usuario
-      - ./education_services/data/moodle:/bitnami/moodle
-      - ./education_services/data/moodledata:/bitnami/moodledata
+      - ./data/moodle:/bitnami/moodle
+      - ./data/moodledata:/bitnami/moodledata
     depends_on:
       - moodle_db
     networks:
@@ -40,6 +40,11 @@ services:
       MARIADB_PASSWORD: ${MOODLE_DB_PASSWORD}
       MARIADB_DATABASE: bitnami_moodle
     volumes:
-      - ./education_services/data/moodle_db:/var/lib/mysql
+      - ./data/moodle_db:/var/lib/mysql
     networks:
       - soteira_net
+
+# Red interna compartida para todos los servicios
+networks:
+  soteira_net:
+    driver: bridge
