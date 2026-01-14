@@ -1,0 +1,39 @@
+services:
+  # ============================================================
+  #  4. SUPPORT SERVICES (Gestión de Tickets)
+  # ============================================================
+  # Peppermint: Sistema de Tickets
+  peppermint:
+    image: pepperlabs/peppermint:latest
+    container_name: soteira_peppermint
+    ports:
+      - "80:80"
+    depends_on:
+      - peppermint_db
+    environment:
+      PORT: 3000
+      SECRET: ${PEPPERMINT_SECRET}
+      DB_HOST: peppermint_db
+      DB_USERNAME: peppermint
+      DB_PASSWORD: ${PEPPERMINT_DB_PASSWORD}
+    networks:
+      - soteira_net
+
+  # Base de datos PostgreSQL para Peppermint
+  peppermint_db:
+    image: postgres:13
+    container_name: soteira_peppermint_db
+    restart: always
+    environment:
+      POSTGRES_DB: peppermint
+      POSTGRES_USER: peppermint
+      POSTGRES_PASSWORD: ${PEPPERMINT_DB_PASSWORD}
+    volumes:
+      - ./data/peppermint_db:/var/lib/postgresql/data
+    networks:
+      - soteira_net
+
+# Red interna compartida para todos los servicios
+networks:
+  soteira_net:
+    driver: bridge

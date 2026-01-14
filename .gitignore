@@ -15,3 +15,7 @@
 .DS_Store
 Thumbs.db
 EOF
+
+
+# env file settings 
+.env
