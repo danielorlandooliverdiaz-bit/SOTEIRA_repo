@@ -27,7 +27,7 @@ services:
     depends_on:
       - moodle_db
     networks:
-      - soteira_net
+      - moodle_net
 
   # Base de datos dedicada para Moodle
   moodle_db:
@@ -42,9 +42,9 @@ services:
     volumes:
       - ./data/moodle_db:/var/lib/mysql
     networks:
-      - soteira_net
+      - moodle_net
 
 # Red interna compartida para todos los servicios
 networks:
-  soteira_net:
+  moodle_net:
     driver: bridge

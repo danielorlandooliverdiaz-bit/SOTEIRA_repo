@@ -14,7 +14,7 @@ services:
     volumes:
       - ./data/nextcloud:/var/www/html
     networks:
-      - soteira_net
+      - nextcloud_net
 
   # Base de datos para Nextcloud
   nextcloud_db:
@@ -28,9 +28,9 @@ services:
     volumes:
       - ./data/nextcloud_db:/var/lib/mysql
     networks:
-      - soteira_net
+      - nextcloud_net
 
   # Red interna compartida para todos los servicios
 networks:
-  soteira_net:
+  nextcloud_net:
     driver: bridge

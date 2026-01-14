@@ -15,7 +15,7 @@ services:
       # Mapeamos el puerto 8084 externo al 5000 interno
       - "80:5000"
     networks:
-      - soteira_net
+      - letschat_net
 
   # Base de datos NoSQL para el chat
   mongo:
@@ -25,9 +25,9 @@ services:
     volumes:
       - ./data/letschat_mongo:/data/db
     networks:
-      - soteira_net
-      
+      - letschat_net
+
 # Red interna compartida para todos los servicios
 networks:
-  soteira_net:
+  letschat_net:
     driver: bridge
