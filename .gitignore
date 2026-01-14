@@ -17,5 +17,4 @@ Thumbs.db
 EOF
 
 
-# env file settings 
-.env
+#echo "Configuración completada. El archivo
