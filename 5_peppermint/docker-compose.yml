@@ -1,11 +1,13 @@
+version: '3.8'
+
 services:
   # ============================================================
-  #  4. SUPPORT SERVICES (Gestión de Tickets)
+  #  Peppermint: Sistema de Tickets
   # ============================================================
-  # Peppermint: Sistema de Tickets
   peppermint:
     image: pepperlabs/peppermint:latest
     container_name: soteira_peppermint
+    restart: always  # <--- IMPORTANTE: Si falla al conectar, reintenta
     ports:
       - "80:3000"
     depends_on:
@@ -20,7 +22,9 @@ services:
     networks:
       - peppermint_net
 
-  # Base de datos PostgreSQL para Peppermint
+  # ============================================================
+  #  Base de datos PostgreSQL
+  # ============================================================
   peppermint_db:
     image: postgres:13
     container_name: soteira_peppermint_db
@@ -30,11 +34,15 @@ services:
       POSTGRES_USER: peppermint
       POSTGRES_PASSWORD: ${PEPPERMINT_DB_PASSWORD}
     volumes:
-      - ./data/peppermint_db:/var/lib/postgresql/data
+      # CAMBIO CLAVE: Usamos un volumen gestionado por Docker, no una carpeta local
+      - db_data:/var/lib/postgresql/data
     networks:
       - peppermint_net
 
-# Red interna compartida para todos los servicios
 networks:
   peppermint_net:
     driver: bridge
+
+# Definimos el volumen aquí para evitar errores de permisos en AWS
+volumes:
+  db_data:
