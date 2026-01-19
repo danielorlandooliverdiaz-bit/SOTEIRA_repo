@@ -65,7 +65,6 @@ Tuvimos problemas con el puerto 80 y el 3000 porque varios servicios querían us
 Si tuviéramos más tiempo, nos gustaría añadir:
 
 * [ ] Configurar HTTPS con certificados SSL reales.
-* [ ] Crear un script de backup automático para las carpetas `data`.
 * [ ] Mejorar el diseño CSS de la Intranet.
 
 ---
