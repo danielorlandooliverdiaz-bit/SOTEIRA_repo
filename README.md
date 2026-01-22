@@ -1,6 +1,6 @@
 #  Proyecto SOTEIRA 
 
-Este es el repositorio oficial para la práctica de despliegue de servicios de la organización **Soteira** en **local**.
+Este es el repositorio oficial para la práctica de despliegue de servicios de la organización **Soteira** en despliegue **local**.
 ---
 
 ##  Cómo arrancar el proyecto
@@ -19,21 +19,21 @@ La primera vez que arranques, **Moodle tarda bastante (unos 3-4 minutos)** en es
 * Espera hasta ver: *"Welcome to the Bitnami Moodle container"*.
 
 * Se necesita crear un usuario administrador en la base de datos. de una manera muy sencilla.
-* entra en el enlace `http://10.2.84.206:8080/_crear_admin.php` (la IP, puede variar).
+* entra en el enlace `http://IP:8080/_crear_admin.php` (la IP, puede variar).
 * El fichero _crear_admin.php se ha mantenido intencionadamente para facilitar la corrección de la práctica.
 
 ## Accesos Directos
 
-La IP del servidor está configurada en el archivo `.env` (`10.2.84.206`).
+La IP del servidor está configurada en el archivo `.env` (`p.j IP`).
 
 | Servicio | URL | Usuario / Pass (Default) |
 | --- | --- | --- |
-| **Intranet** | `http://10.2.84.206:8080` | *(Acceso libre)* |
-| **Moodle** | `http://10.2.84.206:8082` | `user` / `bitnami` |
-| **Nextcloud** | `http://10.2.84.206:8083` | *(Crear admin al entrar)* |
-| **LetsChat** | `http://10.2.84.206:8084` | *(Requiere registro)* |
-| **Peppermint** | `http://10.2.84.206:8085` | `admin@peppermint.com` / `admin` |
-| **Intranet** | `http://10.2.84.206:8080_/_crear_admin.php` | `admin@admin.com` /  `admin` |
+| **Intranet** | `http://IP:8080` | *(Acceso libre)* |
+| **Moodle** | `http://IP:8082` | `user` / `bitnami` |
+| **Nextcloud** | `http://IP:8083` | *(Crear admin al entrar)* |
+| **LetsChat** | `http://IP:8084` | *(Requiere registro)* |
+| **Peppermint** | `http://IP:8085` | `admin@peppermint.com` / `admin` |
+| **Intranet** | `http://IP:8080_/_crear_admin.php` | `admin@admin.com` /  `admin` |
 
 ---
 
@@ -62,10 +62,8 @@ Tuvimos problemas con el puerto 80 y el 3000 porque varios servicios querían us
 
 ## Cosas por mejorar (To-Do)
 
-Si tuviéramos más tiempo, nos gustaría añadir:
-
-* [ ] Configurar HTTPS con certificados SSL reales.
-* [ ] Mejorar el diseño CSS de la Intranet.
+* [ ] Configurar HTTPS para proteger las comunicaciones.
+* [ ] Mejorar el diseño.
 
 ---
 
@@ -76,6 +74,7 @@ Hemos separado los servicios por carpetas para no tener todo mezclado en la raí
 * `/education_services`: Todo lo de Moodle.
 * `/colab_services`: Chat y Nube.
 * `/web_services`: El código PHP de la Intranet.
+* `/support_services`: Servicios de soporte técnico.
 * `docker-compose.yml`: El orquestador general.
 
 ---
