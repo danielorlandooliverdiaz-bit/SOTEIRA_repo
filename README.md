@@ -1,6 +1,6 @@
 #  Proyecto SOTEIRA 
 
-Este es el repositorio oficial para la práctica de despliegue de servicios de la organización **Soteira**.
+Este es el repositorio oficial para la práctica de despliegue de servicios de la organización **Soteira** en **local**.
 ---
 
 ##  Cómo arrancar el proyecto
