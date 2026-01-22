@@ -39,6 +39,7 @@ La IP del servidor está configurada en el archivo `.env` (`p.j IP`).
 
 ## 🔧 Desafíos y Soluciones (Bitácora)
 
+
 Durante el desarrollo nos encontramos varios problemas que hemos solucionado así:
 
 ### 1. El problema de Moodle y "Bitnami Legacy"
