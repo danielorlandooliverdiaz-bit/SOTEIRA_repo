@@ -34,29 +34,6 @@ if ($is_admin && isset($conn) && $conn instanceof mysqli) {
     <title>Intranet - SOTEIRA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css"> 
-    <style>
-        .dashboard-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        /* Efecto hover para los botones de servicio */
-        .service-list-item {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 10px;
-            border-radius: 8px;
-            transition: all 0.3s;
-            text-decoration: none; /* Quitar subrayado */
-            color: white;
-        }
-        .service-list-item:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateX(5px);
-            color: #ffc107; /* Color dorado al pasar el ratón */
-        }
-    </style>
 </head>
 <body class="bg-dark"> <header class="text-white py-3 px-4 d-flex justify-content-between align-items-center">
     <h2 class="m-0">
@@ -110,22 +87,22 @@ if ($is_admin && isset($conn) && $conn instanceof mysqli) {
                     <div class="list-group">
                        <div class="d-flex justify-content-between align-items-center service-list-item p-3">
                             <span class="fw-bold fs-5">☁️ Nube Corporativa</span>
-                            <a href="http://<?= $host_ip ?>:8083" target="_blank" class="btn btn-secondary px-4">Acceder</a>
+                            <a href="http://nextworkapp-env.eba-umcxfs9p.us-east-1.elasticbeanstalk.com/" target="_blank" class="btn btn-secondary px-4">Acceder</a>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center service-list-item p-3">
                             <span class="fw-bold fs-5">🎫 Soporte / Tickets</span>
-                            <a href="http://<?= $host_ip ?>:8085" target="_blank" class="btn btn-primary px-4">Acceder</a>
+                            <a href="http://peppermint-app-env.eba-zd3dqmjj.us-east-1.elasticbeanstalk.com/auth/login" target="_blank" class="btn btn-primary px-4">Acceder</a>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center service-list-item p-3">
                             <span class="fw-bold fs-5">💬 Chat Interno</span>
-                            <a href="http://<?= $host_ip ?>:8084" target="_blank" class="btn btn-danger px-4">Acceder</a>
+                            <a href="http://letschat-env-v1.eba-3cjqxp4f.us-east-1.elasticbeanstalk.com/" target="_blank" class="btn btn-danger px-4">Acceder</a>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center service-list-item p-3">
                             <span class="fw-bold fs-5">🎓 Campus Virtual</span>
-                            <a href="http://<?= $host_ip ?>:8082" target="_blank" class="btn btn-warning px-4 text-dark">Acceder</a>
+                            <a href="http://qwerty-env.eba-rqb32mea.us-east-1.elasticbeanstalk.com/" target="_blank" class="btn btn-warning px-4 text-dark">Acceder</a>
                         </div>
                     </div>
                 </div>

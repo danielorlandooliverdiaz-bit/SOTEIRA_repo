@@ -48,7 +48,7 @@ $error = $_GET['error'] ?? null;
         </form>
 
         <div class="mt-3 text-center">
-            <small>¿No tienes cuenta? <a href="http://<?= $host_ip ?>:8081/#tpl-register" >Regístrate en la Extranet</a></small>
+            <small>¿No tienes cuenta? <a href="/#tpl-register" >Regístrate en la Extranet</a></small>
         </div>
     </div>
 

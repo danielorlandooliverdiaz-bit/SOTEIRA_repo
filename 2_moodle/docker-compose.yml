@@ -1,50 +1,42 @@
 services:
-  #  ============================================================
-  #  2. EDUCATION SERVICES (Plataforma LMS Moodle)
-  # ============================================================
-  # Aplicación Moodle
-  moodle:
-    # Usamos la imagen 'Legacy' para garantizar estabilidad en la versión 5.0
-    image: bitnamilegacy/moodle:5.0.2-debian-12-r2
-    container_name: soteira_moodle
-    ports:
-      # Puerto 80 vm - 80 cnt
-      - "80:80"
+  moodle_db:
+    build: ./moodle_db
+    image: moodle-db-custom
+    restart: always
     environment:
-      - BITNAMI_DEBUG=true
-      - MOODLE_DATABASE_HOST=moodle_db
-      - MOODLE_DATABASE_PORT_NUMBER=3306
-      - MOODLE_DATABASE_USER=bn_moodle
-      - MOODLE_DATABASE_NAME=bitnami_moodle
-      - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD}
-      # URL dinámica basada en la IP definida en el .env
-      - MOODLE_URL=http://${SERVER_IP}
-      - MOODLE_SKIP_BOOTSTRAP=no
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: moodle
+      MYSQL_USER: moodleuser
+      MYSQL_PASSWORD: moodlepassword
     volumes:
-      # Persistencia de datos de la aplicación y archivos de usuario
-      - ./data/moodle:/bitnami/moodle
-      - ./data/moodledata:/bitnami/moodledata
+      - db_data:/var/lib/mysql
+    networks:
+      - moodle-net
+
+  moodle_app:
+    build: ./moodle
+    image: moodle-app-custom
+    restart: always
     depends_on:
       - moodle_db
-    networks:
-      - moodle_net
-
-  # Base de datos dedicada para Moodle
-  moodle_db:
-    # MariaDB 10.11 es la versión LTS recomendada para Moodle 5
-    image: mariadb:10.11
-    container_name: moodle_db
+    ports:
+      - "80:80"
     environment:
-      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MARIADB_USER: bn_moodle
-      MARIADB_PASSWORD: ${MOODLE_DB_PASSWORD}
-      MARIADB_DATABASE: bitnami_moodle
+      # Variables para que la instalación sepa dónde está la DB
+      - MOODLE_DB_HOST=moodle_db
+      - MOODLE_DB_NAME=moodle
+      - MOODLE_DB_USER=moodleuser
+      - MOODLE_DB_PASSWORD=moodlepassword
+     # - MOODLE_URL=http://localhost
+      - MOODLE_URL=${MOODLE_APP_URL}
     volumes:
-      - ./data/moodle_db:/var/lib/mysql
+      - moodle_data:/var/www/moodledata
     networks:
-      - moodle_net
+      - moodle-net
 
-# Red interna compartida para todos los servicios
+volumes:
+  db_data:
+  moodle_data:
+
 networks:
-  moodle_net:
-    driver: bridge
+  moodle-net:

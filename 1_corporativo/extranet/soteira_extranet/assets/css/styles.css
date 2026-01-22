@@ -1,12 +1,13 @@
-/* Importación de fuentes (Requisito PDF) */
+/* Importación de fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@300;400&display=swap');
 
-/* ====== COLORES (usados inline en lugar de variables) ====== */
+/* COLORES (usados inline en lugar de variables) */
 
-/* ====== RESET Y CUERPO ====== */
+/*  RESET Y CUERPO  */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #34495e; /*Fondo base oscuro */
+    background-color: #34495e;
+    /*Fondo base oscuro */
     color: #ffffff;
     margin: 0;
     display: flex;
@@ -14,28 +15,31 @@ body {
     min-height: 100vh;
 }
 
-/* ====== BARRA DE NAVEGACIÓN (Estilo superior) ====== */
+/*  BARRA DE NAVEGACIÓN (Estilo superior) */
 .navbar {
-    background-color: #2c3e50 !important; /* El gris oscuro casi negro de arriba */
+    background-color: #2c3e50 !important;
+    /* El gris oscuro casi negro de arriba */
     border-bottom: 2px solid #f1c40f;
     padding: 10px 0;
 }
 
-.navbar-brand, .admin-panel-text {
+.navbar-brand,
+.admin-panel-text {
     color: #f1c40f !important;
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
 }
 
-/* ====== TARJETAS TIPO "RESUMEN DEL SISTEMA" ====== */
+/* ====== TARJETAS ====== */
 .glass-card {
-    background-color: #9a8c64; /* Color ocre/dorado */
+    background-color: #9a8c64;
+    /* Color ocre/dorado */
     border: none;
     border-radius: 10px;
     padding: 30px;
     color: white;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
 }
 
@@ -48,12 +52,14 @@ body {
 .display-1-soteira {
     font-size: 5rem;
     font-weight: 900;
-    color: #f1c40f; /* Color amarillo brillante */
+    color: #f1c40f;
+    /* Color amarillo brillante */
 }
 
 /* ====== LISTA DE SERVICIOS ====== */
 .services-container {
-    background-color: #34495e; /* Azul algo más claro */
+    background-color: #34495e;
+    /* Azul algo más claro */
     border-radius: 10px;
     padding: 20px;
 }
@@ -69,22 +75,42 @@ body {
 }
 
 /* ====== BOTONES DE COLORES ====== */
-.btn-soteira-blue { background-color: #3498db; color: white; border: none; }
-.btn-soteira-red { background-color: #c0392b; color: white; border: none; }
-.btn-soteira-yellow { background-color: #f1c40f; color: black; border: none; font-weight: bold; }
+.btn-soteira-blue {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.btn-soteira-red {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+}
+
+.btn-soteira-yellow {
+    background-color: #f1c40f;
+    color: black;
+    border: none;
+    font-weight: bold;
+}
 
 /* ====== FUENTES REQUERIDAS ====== */
-h1, h2, .font-bonello {
+h1,
+h2,
+.font-bonello {
     font-family: 'Montserrat', sans-serif;
-    text-transform: none; /* En tu imagen no están en mayúsculas todas */
+    text-transform: none;
+
 }
 
 
 
 /* ====== ESTILOS FOOTER SOTEIRA ====== */
 .footer-soteira {
-    background-color: #2c3e50; /* El tono oscuro de tu cabecera en la imagen */
-    border-top: 2px solid #f1c40f; /* Línea amarilla de tu marca */
+    background-color: #2c3e50;
+   
+    border-top: 2px solid #f1c40f;
+    
     color: #ffffff;
 }
 
@@ -121,24 +147,19 @@ h1, h2, .font-bonello {
 
 .social-icon-box img {
     width: 18px;
-    /* Si tus logos son negros, esto los hace blancos */
+    
     filter: brightness(0) invert(1);
 }
 
 .social-icon-box:hover img {
-    /* Si el fondo se vuelve amarillo al hover, el logo vuelve a ser oscuro */
     filter: brightness(0);
 }
 
 
-
-
 /* SPA css settings */
-
 .page {
     display: none;
 }
-
 nav a.active {
     color: #ffd700;
     border-bottom: 2px solid #ffd700;

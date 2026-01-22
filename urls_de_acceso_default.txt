@@ -1,16 +1,13 @@
-URLs de acceso (local):
+URLs de acceso (AWS):
 
-Intranet: http://10.2.84.206:8080
+Intranet: http://soteira-webs-apps-env.eba-uzkyfiys.us-east-1.elasticbeanstalk.com/intranet
 
-Extranet: http://10.2.84.206:8081
+Extranet: http://soteira-webs-apps-env.eba-uzkyfiys.us-east-1.elasticbeanstalk.com/
 
-Moodle: http://10.2.84.206:8082
+Moodle: http://qwerty-env.eba-rqb32mea.us-east-1.elasticbeanstalk.com/
 
-Nextcloud: http://10.2.84.206:8083
+Nextcloud: http://nextworkapp-env.eba-umcxfs9p.us-east-1.elasticbeanstalk.com/
 
-LetsChat: http://10.2.84.206:8084
+LetsChat: http://letschat-env-v1.eba-3cjqxp4f.us-east-1.elasticbeanstalk.com/login
 
-Peppermint: http://10.2.84.206:8085
-
-
-La IP varia dependiendo de como lo configuren el fichero .env 
+Peppermint: http://peppermint-app-env.eba-zd3dqmjj.us-east-1.elasticbeanstalk.com/auth/login

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # ============================================================
   #  Peppermint: Sistema de Tickets
@@ -45,4 +43,4 @@ networks:
 
 # Definimos el volumen aquí para evitar errores de permisos en AWS
 volumes:
-  db_data:
+  db_data:	

@@ -1,8 +1,21 @@
 services:
-  # ============================================================
-  #  1. WEB SERVICES (Intranet & Extranet Corporativa)
-  # ============================================================
-  # Base de datos compartida para los portales web
+  # =============================================================
+  #  1. WEB SERVICES (Intranet & Extranet Corporativa) + NGINX LB
+  # =============================================================
+
+# EL PROXY (La cara pública)
+  proxy:
+    build: ./nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - extranet
+      - intranet
+    networks:
+      - soteira_net
+
+# Base de datos compartida para los portales web
   soteira_db:
     image: mariadb:10.6
     container_name: soteira_db
@@ -13,7 +26,7 @@ services:
       MYSQL_USER: soteira
       MYSQL_PASSWORD: ${DB_USER_PASSWORD}
     volumes:
-      - ./data/soteira_db:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
       - soteira_net
 
@@ -23,8 +36,6 @@ services:
     container_name: soteira_intranet
     depends_on:
       - soteira_db
-    ports:
-      - "8080:80"
     networks:
       - soteira_net
 
@@ -34,8 +45,6 @@ services:
     container_name: soteira_extranet
     depends_on:
       - soteira_db
-    ports:
-      - "80:80"
     networks:
       - soteira_net
 
@@ -43,3 +52,7 @@ services:
 networks:
   soteira_net:
     driver: bridge
+
+# Volumenes
+volumes:
+  db_data:
