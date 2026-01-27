@@ -240,5 +240,9 @@ $nombre_usuario = isset($_SESSION['user_nombre']) ? $_SESSION['user_nombre'] : '
 <script src="assets/js/main.js" ></script>
 
 
+
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 </html>

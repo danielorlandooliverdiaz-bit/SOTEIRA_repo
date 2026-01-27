@@ -10,7 +10,7 @@
 # Ignorar archivos comprimidos
 *.zip
 *.tar.gz
-
+TODO.TODO
 # Ignorar configuraciones de sistema
 .DS_Store
 Thumbs.db
