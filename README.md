@@ -63,9 +63,7 @@ Tuvimos problemas con el puerto 80 y el 3000 porque varios servicios querían us
 
 ## Cosas por mejorar (To-Do)
 
-* [ ] Configurar HTTPS para proteger las comunicaciones.
-* [ ] Mejorar el diseño.
-
+1. 
 ---
 
 ## Estructura de carpetas
